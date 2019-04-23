@@ -5,7 +5,7 @@
         <img src="../assets/img/heima.png" alt>
         <span>电商后台管理系统</span>
       </div>
-      <el-button type="info">退出</el-button>
+      <el-button type="info" @click="logout()">退出</el-button>
     </el-header>
     <el-container>
       <el-aside :width="isshow?'65px':'200px'">
@@ -39,7 +39,9 @@
           </el-submenu>
         </el-menu>
       </el-aside>
-      <el-main>Main</el-main>
+      <el-main>
+          <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -63,6 +65,20 @@ export default {
         return this.$message.reeor(dt.msg)
       }
       this.menuList = dt.data
+    },
+    logout(){
+        this.$confirm('确认要退出系统么？', '退出', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+        })
+        .then(() => {
+            window.sessionStorage.removeItem('token')
+            this.$router.push('/login')
+        })
+        .catch(() => {
+
+        })
     }
   }
 }

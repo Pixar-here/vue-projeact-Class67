@@ -3,7 +3,7 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import Login from '../components/login.vue'
 import Home from '../components/Home.vue'
-
+import Welcome from '../components/Welcome.vue'
 Vue.use(Router)
 // 提前定义一下router,原因是设置路由守卫需要使用
 const router = new Router({
@@ -11,7 +11,7 @@ const router = new Router({
     // {path: '/',name: 'HelloWorld',component: HelloWorld}
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/home'
     },
     {
       path: '/login',
@@ -19,7 +19,12 @@ const router = new Router({
     },
     {
       path: '/home',
-      component: Home
+      component: Home,
+      redirect: '/welcome',
+      children: [{
+        path: '/welcome',
+        component: Welcome
+      }]
     }
   ]
 })
