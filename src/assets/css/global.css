@@ -9,3 +9,21 @@ html,body,#app{
 i.iconfont{
     margin-right:10px;
 }
+.box-card{
+    margin-top:15px;
+    box-shadow: 0 1px 1px rgba(0 , 0, 0, 0.15);
+}
+.box-card{
+    margin-top:15px;
+    box-shadow: 0 1px 1px rgba(0 , 0, 0, 0.15);
+}
+/* 给业务页面的card卡片去设置样式 */
+.el-table{
+    margin-top:15px;
+    font-size:12px;
+}
+/* 给el-table表格设置样式 */
+.el-table{
+    margin-top:15px;
+    font-size:12px;
+}

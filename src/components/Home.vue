@@ -11,15 +11,16 @@
       <el-aside :width="isshow?'65px':'200px'">
         <div :style="{width:isshow?'65px':'200px'}" @click="isshow=!isshow" class="toggle_bar">|||</div>
         <el-menu
-          background-color="#545c64"
+          background-color="#333744"
           text-color="#fff"
           active-text-color="#409EFF"
           :collapse="isshow"
           :unique-opened="true"
           :collapse-transition="true"
+          :router="true"
         >
           <el-submenu
-            :index="item.id"
+            :index="item.id+''"
             :style="{width:isshow?'65px':'200px'}"
             v-for="(item,k) in menuList"
             :key="item.id"
@@ -31,7 +32,7 @@
             <el-menu-item
               v-for="item2 in item.children"
               :key="item2.id"
-              :index="item.id+'-'+item2.id"
+              :index="item2.path"
             >
               <i class="el-icon-menu"></i>
               <span>{{ item2.authName }}</span>
@@ -40,7 +41,7 @@
         </el-menu>
       </el-aside>
       <el-main>
-          <router-view></router-view>
+        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -66,19 +67,17 @@ export default {
       }
       this.menuList = dt.data
     },
-    logout(){
-        this.$confirm('确认要退出系统么？', '退出', {
+    logout() {
+      this.$confirm('确认要退出系统么？', '退出', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-        })
+      })
         .then(() => {
-            window.sessionStorage.removeItem('token')
-            this.$router.push('/login')
+          window.sessionStorage.removeItem('token')
+          this.$router.push('/login')
         })
-        .catch(() => {
-
-        })
+        .catch(() => {})
     }
   }
 }
